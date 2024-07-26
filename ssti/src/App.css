@@ -1,0 +1,155 @@
+#root {
+  width: 100%;
+  margin: auto;
+  margin-top: 5rem;
+  text-align: center;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+  h2, h5 {
+    font-size: 1.5rem; /* Reduce tamaño en pantallas de 1024px y menos */
+    padding: 1rem;
+  }
+  .text-section p {
+    margin-left: 1rem;
+    font-size: 1rem;
+  }
+  .service-card img {
+    height: 7rem; /* Tamaño más pequeño para imágenes */
+    width: 7rem;
+  }
+  .service-card {
+    padding: 1rem;
+  }
+
+  .bg-blue-100 .flex img {
+    max-width: 11rem; /* Tamaño máximo ajustado para imagen1 */
+  }
+
+  .bg-blue-100 .flex .flex-col img {
+    max-width: 10rem; /* Tamaño máximo ajustado para imagen2 e imagen3 */
+  }
+
+  .common-issues-section, .preventive-measures-section {
+    h2 {
+      font-size: 1.5rem;
+    }
+    p {
+      font-size: 1rem;
+    }
+    button {
+      font-size: 1rem;
+      padding: 0.75rem 1.5rem;
+    }
+  }
+}
+
+/* Para pantallas menores a 768px */
+@media (max-width: 768px) {
+  h2, h5 {
+    font-size: 1.25rem; /* Reduce tamaño en pantallas de 768px y menos */
+  }
+  .text-section p {
+    margin-left: 1rem;
+    font-size: 1rem;
+  }
+  .service-card img {
+    height: 6rem; /* Tamaño más pequeño para imágenes */
+    width: 6rem;
+  }
+  .service-card {
+    padding: 0.75rem;
+  }
+
+  .bg-blue-100 .flex img {
+    max-width: 9rem; /* Tamaño máximo ajustado para imagen1 */
+  }
+
+  .bg-blue-100 .flex .flex-col img {
+    max-width: 8rem; /* Tamaño máximo ajustado para imagen2 e imagen3 */
+  }
+  .a-text a {
+    font-size: 0.875rem;
+  }
+
+  .common-issues-section, .preventive-measures-section {
+    h2 {
+      font-size: 1.25rem;
+    }
+    p {
+      font-size: 0.875rem;
+    }
+    button {
+      font-size: 0.875rem;
+      padding: 0.5rem 1rem;
+    }
+  }
+}
+
+/* Para pantallas menores a 425px */
+@media (max-width: 425px) {
+  h2, h5 {
+    font-size: 1rem; /* Reduce tamaño en pantallas de 425px y menos */
+  }
+  .text-section p {
+    font-size: 1rem;
+  }
+  .service-card img {
+    height: 5rem; /* Tamaño más pequeño para imágenes */
+    width: 5rem;
+  }
+  .service-card {
+    padding: 0.5rem;
+  }
+  .text-section {
+    padding: 1rem;
+  }
+  .bg-blue-100, .bg-green-100 {
+    padding: 1rem;
+  }
+
+  .bg-blue-100 .flex img {
+    max-width: 8rem; /* Tamaño máximo ajustado para imagen1 */
+  }
+
+  .bg-blue-100 .flex .flex-col img {
+    max-width: 7rem; /* Tamaño máximo ajustado para imagen2 e imagen3 */
+  }
+
+  .common-issues-section, .preventive-measures-section {
+    h2 {
+      font-size: 1rem;
+    }
+    p {
+      font-size: 0.875rem;
+    }
+    button {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+    }
+  }
+}
