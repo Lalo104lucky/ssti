@@ -64,7 +64,7 @@ function ProblemasComunes() {
   
   return (
     <>
-      <div className='bg-purple-50 flex justify-center common-issues-section'>
+      <div className='bg-purple-50 flex justify-center common-issues-section mt-20'>
         <div className="max-w-6xl p-6 rounded-lg flex flex-col md:flex-row items-center">
           <div className='md:w-1/2 flex flex-col items-center md:items-start text-justify'>
             <h2 className='text-2xl md:text-3xl font-bold mb-9'>Problemas Comunes</h2>

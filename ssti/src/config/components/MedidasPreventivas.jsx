@@ -53,7 +53,7 @@ function MedidasPreventivas() {
   return (
     <>
     {/*Degradado para abajo todo chido  bg-gradient-to-b from-purple-200 */}
-      <div className='bg-purple-50 flex justify-center preventive-measures-section'>
+      <div className='bg-purple-50 flex justify-center preventive-measures-section mt-20'>
         <div className="max-w-6xl p-6 rounded-lg flex flex-col md:flex-row items-center">
           <div className='md:w-1/2 flex justify-center'>
             <img src={medida} alt="Problemas Comunes Imágen de Freepik" className='rounded-lg w-full md:w-auto object-cover' />

@@ -5,7 +5,7 @@ import '../../config/Footer.css';
 
 const Footer = () => {
   return (
-    <footer className="bg-white dark:bg-gray-900 p-4">
+    <footer className="bg-white dark:bg-gray-900 p-8">
       <div className="w-full max-w-screen-xl mx-auto flex flex-col md:flex-row md:justify-between items-center space-y-4 md:space-y-0">
         <div className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src={Logotipo} className="h-8" alt="Logo SSTI" />
@@ -23,10 +23,12 @@ const Footer = () => {
           <a href="tel:40012" className="hover:underline">40012</a>
         </div>
       </div>
-      <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-      <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
+      {/*
+      <hr className="my-2 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+       <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
         © 2024 <a href="https://github.com/Lalo104lucky/" className="hover:underline">Lalo104lucky™</a>. All Rights Reserved.
       </span>
+      */}
     </footer>
   );
 };

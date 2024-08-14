@@ -1,7 +1,12 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Logotipo from './assets/logo_ssti.png';
-import { FaPlusCircle, FaLightbulb, FaShieldAlt, FaBars } from 'react-icons/fa';
+import Layout from './config/components/Layout.jsx';
+import ProblemasComunes from './config/components/ProblemasComunes.jsx';
+import './App.css';
+import MedidasPreventivas from './config/components/MedidasPreventivas.jsx';
+import ScrollToTop from './config/components/ScrollToTop';
+import DirectorioExtensiones from './config/components/DirectorioExtensiones.jsx';
+import InisioSesion from './config/components/InisioSesion.jsx';
 import imagen1 from './assets/imagen1.png';
 import imagen2 from './assets/imagen2.png';
 import imagen3 from './assets/imagen3.png';
@@ -13,16 +18,17 @@ import nodo from './assets/nodo.png';
 import telefo from './assets/telefo.png';
 import oficina from './assets/oficina.png';
 import medidas from './assets/medidas.png';
-import ProblemasComunes from './config/components/ProblemasComunes.jsx';
-import Footer from './config/components/Footer.jsx';
-import './App.css';
-import MedidasPreventivas from './config/components/MedidasPreventivas.jsx';
-import ScrollToTop from './config/components/ScrollToTop';
-import DirectorioExtensiones from './config/components/DirectorioExtensiones.jsx';
-import InisioSesion from './config/components/InisioSesion.jsx';
+import { FaPlusCircle, FaLightbulb, FaShieldAlt } from 'react-icons/fa';
+import Menu from './config/components/Menu.jsx';
+import Modal from './config/components/Modal.jsx';
+import Principal from './config/components/Principal.jsx';
+import Reportes from './config/components/Reportes.jsx';
+import Historial from './config/components/Historial.jsx';
+import Directorio from './config/components/Directorio.jsx';
 
-const ServiceCard = ({ imgSrc, title, description }) => (
-  <div className="service-card p-4 flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-lg hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+
+const ServiceCard = ({ imgSrc, title, description, onClick }) => (
+  <div onClick={onClick} className="service-card p-4 flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-lg hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 cursor-pointer">
     <img className="object-cover w-full rounded-t-lg h-40 md:h-auto md:w-28 md:rounded-none md:rounded-l-lg" src={imgSrc} alt={title} />
     <div className="flex flex-col justify-between p-4 leading-normal md:w-72">
       <h5 className="mb-1 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h5>
@@ -32,12 +38,11 @@ const ServiceCard = ({ imgSrc, title, description }) => (
 );
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
   const moreInfoRef = useRef(null);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const [showModal, setShowModal] = useState(false);
+  const [modalData, setModalData] = useState({ title: '', description: '', imgSrc: '' });
+  const [usuarioGlobal, setUsuarioGlobal] = useState(null);
 
   const scrollToMoreInfo = () => {
     const elementPosition = moreInfoRef.current.getBoundingClientRect().top;
@@ -49,75 +54,39 @@ function App() {
     });
   };
 
+  const handleCardClick = ({ title, description, imgSrc }) => {
+    setModalData({ title, description, imgSrc });
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setModalContent(null);
+  };
+
   return (
     <Router>
       <ScrollToTop />
-      <nav className="bg-teal-400 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-around mx-auto p-4">
-          <Link to="/" className="flex items-center space-x-3">
-            <img src={Logotipo} className="h-12" alt="Logo SSTI" />
-          </Link>
-          <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-            <button
-              type="button"
-              className="a-text inline-flex items-center p-1 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-              aria-controls="navbar-sticky"
-              aria-expanded={isOpen}
-              onClick={toggleMenu}
-            >
-              <span className="sr-only">Open main menu</span>
-              <FaBars className="w-5 h-5" aria-hidden="true" />
-            </button>
-          </div>
-
-          <div className={`a-text items-center justify-between w-full md:flex md:w-auto md:order-1 ${isOpen ? 'show' : ''}`} id="navbar-sticky">
-            <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-teal-100 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-teal-400 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-              <li>
-                <Link to="/" className="a-text text-xl block py-2 px-3 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-white md:p-0 md:dark:hover:text-white dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:border-gray-700" aria-current="page">
-                  Inicio
-                </Link>
-              </li>
-              <li>
-                <Link to="/problemas-comunes" className="text-xl block py-2 px-3 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-white md:p-0 md:dark:hover:text-white dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:border-gray-700">
-                  Problemas Comunes
-                </Link>
-              </li>
-              <li>
-                <Link to="/medidas-preventivas" className="text-xl block py-2 px-3 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-white md:p-0 md:dark:hover:text-white dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:border-gray-700">
-                  Medidas Preventivas
-                </Link>
-              </li>
-              <li>
-                <Link to="/directorio-extensiones" className="text-xl block py-2 px-3 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-white md:p-0 md:dark:hover:text-white dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:border-gray-700">
-                  Directorio de Extensiones
-                </Link>
-              </li>
-              <li>
-                <Link to="/ssti" className="text-xl block py-2 px-3 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-white md:p-0 md:dark:hover:text-white dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:border-gray-700">
-                  SSTI
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
       <Routes>
-        <Route path="/" element={<Home scrollToMoreInfo={scrollToMoreInfo} moreInfoRef={moreInfoRef} />} />
-        <Route path="/problemas-comunes" element={<ProblemasComunes />} />
-        <Route path="/medidas-preventivas" element={<MedidasPreventivas />} />
-        <Route path="/directorio-extensiones" element={<DirectorioExtensiones />} />
-        <Route path="/ssti" element={<InisioSesion />} />
+        <Route path="/" element={<Layout><Home scrollToMoreInfo={scrollToMoreInfo} moreInfoRef={moreInfoRef} handleCardClick={handleCardClick} /></Layout>} />
+        <Route path="/problemas-comunes" element={<Layout><ProblemasComunes /></Layout>} />
+        <Route path="/medidas-preventivas" element={<Layout><MedidasPreventivas /></Layout>} />
+        <Route path="/directorio-extensiones" element={<Layout><DirectorioExtensiones /></Layout>} />
+        <Route path="/ssti" element={<InisioSesion setUsuarioGlobal={setUsuarioGlobal} />} />
+        <Route path="/ssti/*" element={<Menu usuario={usuarioGlobal} />}>
+          <Route path="tablero" element={<Principal usuario={usuarioGlobal} />} />
+          <Route path="reportes" element={<Reportes usuario={usuarioGlobal} />} />
+          <Route path="directorio" element={<Directorio usuario={usuarioGlobal} />} />
+        </Route>
       </Routes>
-
-      <Footer />
+      {modalContent && <Modal content={modalContent} closeModal={closeModal} />}
+      {showModal && <Modal closeModal={() => setShowModal(false)} title={modalData.title} description={modalData.description} imgSrc={modalData.imgSrc} />}
     </Router>
   );
 }
 
-const Home = ({ scrollToMoreInfo, moreInfoRef }) => (
+const Home = ({ scrollToMoreInfo, moreInfoRef, handleCardClick }) => (
   <>
-    <div className="bg-blue-100">
+    <div className="bg-blue-100 mt-20">
       <div className="p-6 rounded-lg flex flex-col md:flex-row items-center flex-grow">
         <div className="md:w-1/2 flex flex-row gap-3 mb-4 md:mb-0 justify-end">
           <img src={imagen1} alt="Trabajo en red" className="rounded-lg object-cover" />
@@ -132,7 +101,7 @@ const Home = ({ scrollToMoreInfo, moreInfoRef }) => (
             Nos aseguramos de que los dispositivos electrónicos, redes y programas funcionen de manera eficiente y estén alineados con las necesidades de la institución. Además, implementamos soluciones proactivas para resolver cualquier incidencia técnica y garantizar la continuidad operativa.
           </p>
           <button
-            className="bg-teal-500 text-white hover:bg-teal-600 py-3 px-6 mb-9 focus:ring-4 focus:outline-none focus:ring-teal-400 font-medium rounded-lg flex items-center self-center text-xl"
+            className="bg-teal-500 text-white hover:bg-teal-600 py-3 px-6 mb-9 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg flex items-center self-center text-xl"
             onClick={scrollToMoreInfo}
           >
             <FaPlusCircle className="mr-3 text-2xl" /> Información Adicional
@@ -146,12 +115,12 @@ const Home = ({ scrollToMoreInfo, moreInfoRef }) => (
         <h2 className="text-2xl md:text-3xl font-bold mt-7 mb-5 text-black">Tipos de Servicios</h2>
       </div>
       <div className="flex flex-wrap justify-center gap-6 p-4">
-        <ServiceCard imgSrc={compu} title="Equipo de Computo" description="Garantizar el óptimo rendimiento y funcionamiento de los equipos informáticos." />
-        <ServiceCard imgSrc={impresora} title="Impresoras" description="Gestionar y mantener las impresoras conectadas a la red, incluyendo problemas relacionados." />
-        <ServiceCard imgSrc={telefo} title="Teléfono" description="Facilitar la comunicación de líneas telefónicas para identificar llamadas y mejorar la experiencia del usuario." />
-        <ServiceCard imgSrc={ethernet} title="Internet" description="Asegurar que las redes funcionen de manera eficiente proporcionando acceso rápido a internet." />
-        <ServiceCard imgSrc={nodo} title="Nodos" description="Enrutar los paquetes de datos entre nodos para garantizar que lleguen correctamente a su destino." />
-        <ServiceCard imgSrc={fuente} title="Regulador de Voltaje" description="Proporcionar energía de respaldo a los equipos durante cortes eléctricos por un tiempo limitado." />
+        <ServiceCard imgSrc={compu} title="Equipo de Computo" description="Garantizar el óptimo rendimiento y funcionamiento de los equipos informáticos." onClick={() => handleCardClick({ title: "Computadora", description: "Detalles del servicio de Equipo de Computo.", imgSrc: compu })} />
+        <ServiceCard imgSrc={impresora} title="Impresoras" description="Gestionar y mantener las impresoras conectadas a la red, incluyendo problemas relacionados." onClick={() => handleCardClick({ title: "Impresora", description: "Detalles del servicio de Impresoras.", imgSrc: impresora })} />
+        <ServiceCard imgSrc={telefo} title="Teléfono" description="Facilitar la comunicación de líneas telefónicas para identificar llamadas y mejorar la experiencia del usuario." onClick={() => handleCardClick({ title: "Teléfono", description: "Detalles del servicio de Teléfono.", imgSrc: telefo })} />
+        <ServiceCard imgSrc={ethernet} title="Internet" description="Asegurar que las redes funcionen de manera eficiente proporcionando acceso rápido a internet." onClick={() => handleCardClick({ title: "Internet", description: "Detalles del servicio de Internet.", imgSrc: ethernet })} />
+        <ServiceCard imgSrc={nodo} title="Nodos" description="Enrutar los paquetes de datos entre nodos para garantizar que lleguen correctamente a su destino." onClick={() => handleCardClick({ title: "Nodo", description: "Detalles del servicio de Nodos.", imgSrc: nodo })} />
+        <ServiceCard imgSrc={fuente} title="Regulador de Voltaje" description="Proporcionar energía de respaldo a los equipos durante cortes eléctricos por un tiempo limitado." onClick={() => handleCardClick({ title: "Regulador", description: "Detalles del servicio de Regulador de Voltaje.", imgSrc: fuente })} />
       </div>
     </div>
 

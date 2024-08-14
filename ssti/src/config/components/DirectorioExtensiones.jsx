@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { FaAddressBook, FaAngleLeft, FaAngleRight } from 'react-icons/fa';
-import Directorio from '../../assets/Directorio_Ex.png';
 import Directorio1 from '../../assets/Directorio_E.png';
 import { initFlowbite } from 'flowbite';
 import '../../App.css';
@@ -69,7 +68,7 @@ function DirectorioExtensiones() {
 
     return (
         <>
-            <div className='bg-white to-transparent flex justify-center common-issues-section'>
+            <div className='bg-white to-transparent flex justify-center common-issues-section mt-20'>
                 <div className="max-w-6xl p-6 rounded-lg flex flex-col md:flex-row items-center">
                     <div className='md:w-1/2 flex flex-col items-center md:items-start text-justify'>
                         <h2 className='text-2xl md:text-3xl font-bold mb-9'>Directorio de Extensiones</h2>
@@ -93,7 +92,7 @@ function DirectorioExtensiones() {
                         <div className="relative">
                             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                                 <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                 </svg>
                             </div>
                             <input
@@ -132,12 +131,12 @@ function DirectorioExtensiones() {
                     </div>
                 </div>
 
-                <div className="relative text-xl bg-teal-300 overflow-x-auto shadow-md sm:rounded-lg mx-auto mt-9">
+                <div className="relative text-xl bg-gray-100 overflow-x-auto shadow-md sm:rounded-lg mx-auto mt-9">
                     {loading && <p>Cargando...</p>}
                     {error && <p>No hay datos</p>}
                     {!loading && !error && (
                         <table className="w-full text-xl text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                            <thead className="text-xl text-gray-700 uppercase bg-teal-300 dark:bg-gray-700 dark:text-gray-400">
+                            <thead className="text-xl text-gray-700 uppercase bg-teal-400 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" className="px-6 py-3">
                                         PISO
