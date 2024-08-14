@@ -23,7 +23,6 @@ import Menu from './config/components/Menu.jsx';
 import Modal from './config/components/Modal.jsx';
 import Principal from './config/components/Principal.jsx';
 import Reportes from './config/components/Reportes.jsx';
-import Historial from './config/components/Historial.jsx';
 import Directorio from './config/components/Directorio.jsx';
 
 
